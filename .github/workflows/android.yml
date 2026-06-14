@@ -24,10 +24,11 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install Buildozer Dependencies
+    - name: Install Buildozer and Android System Dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libssl-dev cmake
+        sudo apt-get install -y android-sdk-build-tools lib32stdc++6 lib32z1
 
     - name: Install Buildozer
       run: |
@@ -36,9 +37,11 @@ jobs:
 
     - name: Compile APK with Buildozer
       run: |
+        # Force accept licenses directly via buildozer execution flags
         buildozer android debug
       env:
         TERM: xterm
+        BUILDOZER_ALLOW_KIVY_NEW_DESIGN: 1
 
     - name: Upload Finished APK Artifact
       uses: actions/upload-artifact@v4
