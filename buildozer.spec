@@ -111,6 +111,8 @@ fullscreen = 0
 # (int) Target Android API, should be as high as possible.
 #android.api = 33
 
+android.accept_sdk_license = True
+
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 24
 
